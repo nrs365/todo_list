@@ -12,7 +12,6 @@ do {
         // Display each item and a newline
         echo "[{$key}] {$item}\n";
     }
-
     // Show the menu options
     echo '(N)ew item, (R)emove item, (Q)uit : ';
 
@@ -33,7 +32,10 @@ do {
         $key = trim(fgets(STDIN));
         // Remove from array
         unset($items[$key]);
+        array_unshift($items, "");
+        unset($items[0]);
     }
+    
 // Exit when input is (Q)uit
 } while ($input != 'Q');
 

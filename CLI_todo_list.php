@@ -1,8 +1,7 @@
 <?php
 
 // Create array to hold list of todo items
-$items = array(''); // could do $items = array('') - sets array up with a single value/placeholder in the array so you can use this instead of array_unshift();
-//array_unshift($items, "");
+$items = array(''); 
 unset($items[0]);
 
 function list_items($list)
@@ -18,25 +17,15 @@ function list_items($list)
 // and convert to uppercase if $upper is true
 function get_input($upper = FALSE) 
 {   $result = trim(fgets(STDIN));
-    // if ($upper) {
-    //     return strtoupper($result);
-    // } else {
-    //     return trim(fgets(STDIN));
-    // }
     return $upper ? strtoupper($result) : $result;
 }
-
 
 // The loop!
 do {
 
     // // Iterate through list items
-    // foreach ($items as $key => $item) {
     echo list_items($items);
-    //     // Display each item and a newline
-        // echo "[{$key}] {$item}\n";
 
-    // }
     // Show the menu options
     echo '(N)ew item, (R)emove item, (Q)uit : ';
 

@@ -8,11 +8,10 @@ function list_items($list)
 {
     $result = '';
     foreach ($list as $key => $item) {       
-        $result .= "[" . $key . "]" . $item . PHP_EOL;
+        $result .= "[" . $key . "] " . $item . PHP_EOL;
     } 
     return $result;   
 }
-
 // Get STDIN, strip whitespace and newlines, 
 // and convert to uppercase if $upper is true
 function get_input($upper = FALSE) 

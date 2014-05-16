@@ -45,6 +45,7 @@ do {
         $key = get_input();
         // Remove from array
         unset($items[$key - 1]);
+        $items = array_value($items);
         //array_unshift($items, "");
         //unset($items[0]);
     }

@@ -2,13 +2,13 @@
 
 // Create array to hold list of todo items
 $items = array(''); 
-unset($items[0]);
+//unset($items[0]);
 
 function list_items($list)
 {
     $result = '';
     foreach ($list as $key => $item) {       
-        $result .= "[" . $key . "] " . $item . PHP_EOL;
+        $result .= "[" . ($key + 1) . "] " . $item . PHP_EOL;
     } 
     return $result;   
 }
@@ -45,8 +45,8 @@ do {
         $key = get_input();
         // Remove from array
         unset($items[$key]);
-        array_unshift($items, "");
-        unset($items[0]);
+        //array_unshift($items, "");
+        //unset($items[0]);
     }
     
 // Exit when input is (Q)uit

@@ -53,9 +53,23 @@ do {
     // Check for actionable input
     if ($input == 'N') {
         // Ask for entry
-        echo 'Enter item: ';
         // Add entry to list array
-        $items[] = get_input();
+        // $items[] = get_input(); // equal to array push, replace with array push or array unshift; 
+        echo 'Would you like this item added at the (b)eginning of the list or (e)nd of the list?';
+        
+        $add_location = get_input(true);
+        
+        echo 'Enter item: ';
+        $new_item = get_input();
+
+        if ($add_location == 'B') {
+            array_unshift($items, $new_item);
+        
+        } else if ($add_location == 'E') {
+            array_push($items, $new_item);
+        
+        }
+
     } else if ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';

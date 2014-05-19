@@ -68,9 +68,13 @@ do {
         } else if ($add_location == 'E') {
             array_push($items, $new_item);
         
+        } else {
+             array_push($items, $new_item);
         }
 
-    } else if ($input == 'R') {
+    }
+
+    else if ($input == 'R') {
         // Remove which item?
         echo 'Enter item number to remove: ';
         // Get array key
@@ -80,8 +84,12 @@ do {
         //$items = array_value($items);  have to get rid of this b/c it resorts the keys
         //array_unshift($items, "");
         //unset($items[0]);
-    } else if($input == 'S') {
+    } else if ($input == 'S') {
         $items = sort_menu($items);
+    } else if ($input == 'F'){
+        array_shift($items);
+    } else if ($input == 'L'){
+        array_pop($items);
     }
     
 // Exit when input is (Q)uit

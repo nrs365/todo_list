@@ -24,12 +24,11 @@ function sort_menu($items) {
     echo 'Sort (A)-Z, (Z)-A, (O)rder entered, (R)everse order entered: ';
 
     $sorting = get_input(true);
-    //$sorting = strtoupper(trim(fgets(STDIN)));
 
     if ($sorting == 'A'){
-           sort($items);
+            asort($items);
         } else if ($sorting == 'Z') {
-            rsort($items);
+            arsort($items);
         } else if ($sorting == 'O'){
             ksort($items);
         } else if ($sorting == 'R') {
@@ -64,16 +63,11 @@ do {
         $key = get_input();
         // Remove from array
         unset($items[$key - 1]);
-        $items = array_value($items);
+        //$items = array_value($items);  have to get rid of this b/c it resorts the keys
         //array_unshift($items, "");
         //unset($items[0]);
     } else if($input == 'S') {
-        
-        //$sorting = get_input(true);
-
         $items = sort_menu($items);
-
-    
     }
     
 // Exit when input is (Q)uit

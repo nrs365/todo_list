@@ -9,7 +9,7 @@ function list_items($list)
 {
     $result = '';
     foreach ($list as $key => $item) {       
-        $result .= "[" . ($key + 1) . "] " . $item . PHP_EOL;
+        $result .= '[' . ($key + 1) . '] ' . $item . PHP_EOL;
     } 
     return $result;   
 }
@@ -26,9 +26,9 @@ function sort_menu($items) {
     $sorting = get_input(true);
 
     if ($sorting == 'A'){
-            asort($items);
+            natcasesort($items);
         } else if ($sorting == 'Z') {
-            arsort($items);
+            arsort($items, SORT_NATURAL | SORT_FLAG_CASE);
         } else if ($sorting == 'O'){
             ksort($items);
         } else if ($sorting == 'R') {
@@ -44,13 +44,23 @@ do {
     echo list_items($items);
 
     // Show the menu options
-    echo '(N)ew item, (R)emove item, (Q)uit, (S)ort : ';
+    echo '(O)pen file, (N)ew item, (R)emove item, (S)ort, or (Q)uit : ';
 
     // Get the input from user
     // Use trim() to remove whitespace and newlines
     $input = get_input(true);
 
     // Check for actionable input
+    if ($input == 'O') {
+        echo 'Please enter the file name and location you would like loaded: ';
+        
+        $filename = get_input();
+        $filesize = filesize($filename);
+        $read = fopen($filename, 'r');
+        $listString = trim(fread($read, $filesize));
+        $listArray = explode("\n", $listString);
+        echo list_items($listArray);
+    }
     if ($input == 'N') {
         // Ask for entry
         // Add entry to list array

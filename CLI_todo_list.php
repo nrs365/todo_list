@@ -38,14 +38,13 @@ function sort_menu($items) {
 }
 
 function open_file($filename, $array) {
-        // $filename = get_input();
         $filesize = filesize($filename);
         $read = fopen($filename, 'r');
         $listString = trim(fread($read, $filesize));
         $listArray = explode("\n", $listString);
         $array = array_merge($listArray, $array);
         fclose($read);
-        return $array;
+        return $array;        
 }
 // The loop!
 do {
@@ -64,19 +63,10 @@ do {
     if ($input == 'O') {
         echo 'Please enter the file name and location you would like loaded: ';
         $filename = get_input();
-        open_file($filename, $items);
-        //echo list_items($items);
-
-        //open_file($filename, $items);
-        // $filename = get_input();
-        // $filesize = filesize($filename);
-        // $read = fopen($filename, 'r');
-        // $listString = trim(fread($read, $filesize));
-        // $listArray = explode("\n", $listString);
-        // array_merge($listArray, $items);
-        // echo list_items($items);
+        $items = open_file($filename, $items);
+       
     }
-    if ($input == 'N') {
+    else if ($input == 'N') {
         // Ask for entry
         // Add entry to list array
         // $items[] = get_input(); // equal to array push, replace with array push or array unshift; 

@@ -38,22 +38,21 @@ function sort_menu($items) {
 }
 
 function open_file($filename, $array) {
-        $filesize = filesize($filename);
-        $read = fopen($filename, 'r');
-        $listString = trim(fread($read, $filesize));
-        $listArray = explode("\n", $listString);
-        $array = array_merge($listArray, $array);
-        fclose($read);
-        return $array;        
+    $filesize = filesize($filename);
+    $read = fopen($filename, 'r');
+    $listString = trim(fread($read, $filesize));
+    $listArray = explode("\n", $listString);
+    $array = array_merge($listArray, $array);
+    fclose($read);
+    return $array;        
 }
 
 function save_file($filename, $array) {
-    $saved_file = fopen($filename, 'w');
+    $saved_file = fopen($filename, 'a');
     $listString = implode("\n", $array);
     fwrite($saved_file, $listString . "\n");
     fclose($saved_file);
-    
-
+    //return "Thanks for saving to {$filename}!\n";
 }
 // The loop!
 do {
@@ -113,9 +112,14 @@ do {
     } else if ($input == 'A'){
        echo 'Please enter the file name and location you would like to save to:';
        $filename = get_input();
-       save_file($filename, $items);
-       echo "Thanks for saving!\n";
-        //call function
+            if (is_writeable($filename)) {
+                echo "This file already exists.  Would you still like to save to this file? Y/N: \n";
+                $save_option = get_input(true);
+                if ($save_option == 'Y') {
+                    save_file($filename, $items);
+                    echo "Thanks for saving to {$filename}\n";
+                }
+            }    
     } else if ($input == 'F'){
         array_shift($items);
     } else if ($input == 'L'){
